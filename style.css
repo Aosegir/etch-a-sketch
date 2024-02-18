@@ -7,6 +7,10 @@ html, body, #grid {
     display: flex;
 }
 
-#grid {
+.grid-item {
     box-sizing: border-box;
+}
+
+.mouseover-background {
+    background-color: skyblue;
 }

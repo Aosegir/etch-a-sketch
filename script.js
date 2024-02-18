@@ -17,12 +17,16 @@ each grid within the row (height = HEIGHT/16, width = HEIGHT/16)
 // User inputs and when the screen refreshes, preload it with 16
 for (let gridRow = 0; gridRow < 16; gridRow++) {
     let row = document.createElement('div');
-    row.setAttribute('class', 'grid-row');
+    row.classList.add('grid-row');
     row.style.cssText = `height: ${HEIGHT/16}px; width: ${HEIGHT}px;`;
     grid.appendChild(row);
     for (let rowItem = 0; rowItem < 16; rowItem++) {
         let item = document.createElement('div');
-        item.style.cssText = `height: ${HEIGHT/16}px; width: ${HEIGHT/16}px; border: 1px solid red;`;
+        item.classList.add('grid-item');
+        item.style.cssText = `height: ${HEIGHT/16}px; width: ${HEIGHT/16}px; border: 1px solid black;`;
+        item.addEventListener('mouseover', () => {
+            item.classList.add('mouseover-background');
+        });
         row.appendChild(item);
     }
 }
