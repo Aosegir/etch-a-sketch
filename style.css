@@ -2,3 +2,11 @@ html, body, #grid {
     margin: 0;
     height: 100%;
 }
+
+.grid-row {
+    display: flex;
+}
+
+#grid {
+    box-sizing: border-box;
+}
