@@ -9,6 +9,7 @@ html, body, #grid {
 
 .grid-item {
     box-sizing: border-box;
+    background-color: white;
 }
 
 .mouseover-background {

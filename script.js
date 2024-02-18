@@ -32,13 +32,13 @@ function setGridSize (gridSize) {
             item.classList.add('grid-item');
             item.style.cssText = `height: ${adjustedHeight}px; width: ${adjustedHeight}px; border: 1px solid black;`;
             item.addEventListener('mouseover', () => {
-                item.classList.add('mouseover-background');
+                item.style.backgroundColor = getRandomColor();
+                // item.classList.add('mouseover-background'); // FOR NORMAL BG-COLOR
             });
             row.appendChild(item);
         }
     }
 }
-
 
 const editButton = document.getElementById('edit-grid');
 
@@ -52,3 +52,14 @@ editButton.addEventListener('click', () => {
 });
 
 setGridSize(16);
+
+/* -- EXTRA CREDIT: Random Color Generator -- */
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
