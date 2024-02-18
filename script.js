@@ -1,9 +1,6 @@
 const grid = document.getElementById('grid');
 const HEIGHT = screen.height;
 
-console.log(HEIGHT);
-console.log(HEIGHT/16);
-
 /*
 grid = big square
 16 rows as divs
@@ -15,18 +12,43 @@ each grid within the row (height = HEIGHT/16, width = HEIGHT/16)
 
 // Easy revamp in the future for the button, change 16 to input value that
 // User inputs and when the screen refreshes, preload it with 16
-for (let gridRow = 0; gridRow < 16; gridRow++) {
-    let row = document.createElement('div');
-    row.classList.add('grid-row');
-    row.style.cssText = `height: ${HEIGHT/16}px; width: ${HEIGHT}px;`;
-    grid.appendChild(row);
-    for (let rowItem = 0; rowItem < 16; rowItem++) {
-        let item = document.createElement('div');
-        item.classList.add('grid-item');
-        item.style.cssText = `height: ${HEIGHT/16}px; width: ${HEIGHT/16}px; border: 1px solid black;`;
-        item.addEventListener('mouseover', () => {
-            item.classList.add('mouseover-background');
-        });
-        row.appendChild(item);
+function setGridSize (gridSize) {
+    if(grid.hasChildNodes) {
+        let lastChild = grid.lastElementChild;
+        while(lastChild) {
+            grid.removeChild(lastChild);
+            lastChild = grid.lastElementChild;
+        }
+    }
+
+    let adjustedHeight = HEIGHT/gridSize;
+    for (let gridRow = 0; gridRow < gridSize; gridRow++) {
+        let row = document.createElement('div');
+        row.classList.add('grid-row');
+        row.style.cssText = `height: ${adjustedHeight}px; width: ${HEIGHT}px;`;
+        grid.appendChild(row);
+        for (let rowItem = 0; rowItem < gridSize; rowItem++) {
+            let item = document.createElement('div');
+            item.classList.add('grid-item');
+            item.style.cssText = `height: ${adjustedHeight}px; width: ${adjustedHeight}px; border: 1px solid black;`;
+            item.addEventListener('mouseover', () => {
+                item.classList.add('mouseover-background');
+            });
+            row.appendChild(item);
+        }
     }
 }
+
+
+const editButton = document.getElementById('edit-grid');
+
+editButton.addEventListener('click', () => {
+    let sizeOfGrid = -1;
+    while(sizeOfGrid < 0 || sizeOfGrid > 101) {
+        sizeOfGrid = prompt("What would you like the new size of the grid to be? Enter a number between 1-100.");
+    };
+
+    setGridSize(sizeOfGrid);
+});
+
+setGridSize(16);
